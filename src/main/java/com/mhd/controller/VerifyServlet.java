@@ -5,7 +5,6 @@ import com.mhd.domain.Result;
 import com.mhd.util.JSONUtil;
 import com.mhd.util.MyCaptchaUtil;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class VerifyServlet extends HttpServlet {
     private MyCaptchaUtil myCaptchaUtil = new MyCaptchaUtil();
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Result<Captcha> result = new Result();
+        Result<Captcha> result = new Result<Captcha>();
         Captcha captcha = myCaptchaUtil.generateCaptchaUtil();
         try {
             if (captcha.getImg() != null && captcha.getCode() != null) {

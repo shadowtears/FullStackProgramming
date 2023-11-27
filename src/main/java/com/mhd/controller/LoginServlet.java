@@ -5,6 +5,7 @@ import com.mhd.domain.User;
 import com.mhd.service.UserService;
 import com.mhd.service.impl.UserServiceImpl;
 import com.mhd.util.JSONUtil;
+import com.mhd.util.MySessionContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,12 +21,13 @@ import java.io.IOException;
 @WebServlet("/user/login")
 public class LoginServlet extends HttpServlet {
     private UserService userService = new UserServiceImpl();
+    private MySessionContext myc = MySessionContext.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        Result result = new Result();
+        Result<String> result = new Result<String>();
         if (username == null || password == null) {
             result.setCode(202);
             result.setMsg("登录失败,用户名或者密码为空");
@@ -40,7 +42,9 @@ public class LoginServlet extends HttpServlet {
                 result.setMsg("登录成功");
                 //服务端记录登录状态
                 HttpSession session = req.getSession();
-                session.setAttribute("USER", user);
+                session.setAttribute("User", user);
+                myc.addSession(session);
+                result.setData(session.getId());
             } else {
                 result.setCode(201);
                 result.setMsg("登录失败,用户名或密码错误");

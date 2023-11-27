@@ -21,16 +21,22 @@ public class JDBCUtilTest {
         Connection connection = JDBCUtil.getConnection();
         if (connection != null) {
             Statement statement = connection.createStatement();
-//            String str = "CREATE TABLE IF NOT EXISTS UserTable (UserID INTEGER PRIMARY KEY AUTOINCREMENT, Username VARCHAR(100) UNIQUE NOT NULL, UserPassword VARCHAR(100) NOT NULL)";
+//            String str = "CREATE TABLE AnimalPreference (id INTEGER PRIMARY KEY AUTOINCREMENT,username VARCHAR(255) NOT NULL,favorite_animal VARCHAR(255) NOT NULL,reason TEXT NOT NULL,image_url VARCHAR(255) NOT NULL);";
 //            statement.executeUpdate(str);
 //            System.out.println("创建表成功");
-//            String UserPasswords = DatatypeConverter.printBase64Binary("123456".getBytes("utf-8"));
-//            String insertSQL = "INSERT INTO UserTable(Username, UserPassword) VALUES ('张三' ,'MTIzNDU2')";
-//            System.out.println(insertSQL);
-//            statement.executeUpdate(insertSQL);
+//            String str = "INSERT INTO UserTable (Username, UserPassword)VALUES ('李四', 'MTIzNDU2');";
+//            statement.executeUpdate(str);
 //            System.out.println("插入成功");
-            ResultSet resultSet = statement.executeQuery("select * from UserTable");
-            System.out.println(resultSet.getString(3));
+//            String str = "SELECT * FROM AnimalPreference";
+//            ResultSet resultSet = statement.executeQuery(str);
+//            int tol = 0;
+//            while (resultSet.next()){
+//                tol++;
+//            }
+//            System.out.println(tol);
+//            System.out.println(resultSet.getString(4));
+//            String str = "DROP TABLE AnimalPreference";
+//            statement.executeUpdate(str);
         } else {
             System.out.println("连接失败");
         }
